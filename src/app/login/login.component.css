@@ -1,0 +1,10 @@
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.login-container .alert.alert-danger {
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}

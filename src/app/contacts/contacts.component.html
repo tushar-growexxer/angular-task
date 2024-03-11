@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>Contact List</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Birth Date</th>
+        <th>Age</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let contact of contactList;let i = index">
+        <td>{{ i + 1}}</td>
+        <td>{{ contact.name | uppercase }}</td>
+        <td *ngIf="editIndex!==i">{{ contact.phone}}</td>
+        <td *ngIf="editIndex===i">
+          <input [(ngModel)]="contact.phone" #phone/>
+        </td>
+        <td *ngIf="editIndex!==i">{{ contact.email }}</td>
+        <td *ngIf="editIndex===i">
+          <input  [(ngModel)]="contact.email" #email/>
+        </td>
+        <td [appGenderDirective]="contact.gender">{{ contact.gender }}</td>
+        <td>{{ contact.birthDate| date:'dd-mm-yyyy' }}</td>
+        <td>{{ contact.birthDate | age }}</td>
+        <td>
+          <button class="btn btn-primary" *ngIf="editIndex!==i" (click)="onEdit(i)">Edit</button>
+          <button class="btn btn-primary" *ngIf="editIndex===i" (click)="onUpdate()">Update</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
